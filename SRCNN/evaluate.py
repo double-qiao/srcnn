@@ -29,22 +29,25 @@ def ssim(img1, img2):
                                                             (sigma1_sq + sigma2_sq + C2))
     return ssim_map.mean()
 
-def calculate_ssim(img1, img2):
+def calculate_ssim(pre, tar):
     '''calculate SSIM
     the same outputs as MATLAB's
     img1, img2: [0, 255]
     '''
-    if not img1.shape == img2.shape:
-        raise ValueError('Input images must have the same dimensions.')
-    if len(img1.shape) - 1 == 2:
-        return ssim(img1, img2)
-    elif len(img1.shape) -1 == 3:
-        if img1.shape[1] == 3:
-            ssims = []
-            for i in range(3):
-                ssims.append(ssim(img1, img2))
-            return np.array(ssims).mean()
-        elif img1.shape[1] == 1:
-            return ssim(np.squeeze(img1), np.squeeze(img2))
-    else:
-        raise ValueError('Wrong input image dimensions.')
+    for i in range(pre.shape[0]):
+        img1 = pre[i, :, :, :]
+        img2 = tar[i, :, :, :]
+        if not img1.shape == img2.shape:
+            raise ValueError('Input images must have the same dimensions.')
+        if img1.ndim  == 2:
+            return ssim(img1, img2)
+        elif img1.ndim  == 3:
+            if img1.shape[1] == 3:
+                ssims = []
+                for j in range(3):
+                    ssims.append(ssim(img1, img2))
+                return np.array(ssims).mean()
+            elif img1.shape[1] == 1:
+                return ssim(np.squeeze(img1), np.squeeze(img2))
+        else:
+            raise ValueError('Wrong input image dimensions.')
