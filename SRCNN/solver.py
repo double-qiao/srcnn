@@ -69,6 +69,7 @@ class SRCNNTrainer(object):
             for batch_num, (data, target) in enumerate(self.testing_loader):
                 data, target = data.to(self.device), target.to(self.device)
                 prediction = self.model(data)
+                print(prediction.shape)
                 ssim = calculate_ssim(prediction, target)
                 mse = self.criterion(prediction, target)
                 psnr = 10 * log10(1 / mse.item())
