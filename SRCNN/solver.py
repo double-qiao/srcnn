@@ -50,7 +50,7 @@ class SRCNNTrainer(object):
         train_loss = 0
         for batch_num, (data, target) in enumerate(self.training_loader):
             print(batch_num)
-            if batch_num == 1 or batch_num == 3:
+            if batch_num == 1 or batch_num == 3 or batch_num == 6:
                 continue
             data, target = data.to(self.device), target.to(self.device)
             self.optimizer.zero_grad()
