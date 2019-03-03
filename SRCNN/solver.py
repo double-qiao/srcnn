@@ -6,7 +6,7 @@ import torch
 import torch.backends.cudnn as cudnn
 
 from SRCNN.model import Net
-from progress_bar import progress_bar
+from progressbar import *
 
 
 
@@ -55,7 +55,7 @@ class SRCNNTrainer(object):
             train_loss += loss.item()
             loss.backward()
             self.optimizer.step()
-            progress_bar(batch_num, len(self.training_loader), 'Loss: %.4f' % (train_loss / (batch_num + 1)))
+            ProgressBar(batch_num, len(self.training_loader), 'Loss: %.4f' % (train_loss / (batch_num + 1)))
 
         print("    Average Loss: {:.4f}".format(train_loss / len(self.training_loader)))
 
@@ -73,7 +73,7 @@ class SRCNNTrainer(object):
                 psnr = 10 * log10(1 / mse.item())
                 avg_psnr += psnr
                 avg_ssim += ssim
-                progress_bar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
+                ProgressBar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
 
         print(" ----Average PSNR/SSIM results for {}----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / len(self.testing_loader), avg_ssim / len(self.testing_loader)))
 
