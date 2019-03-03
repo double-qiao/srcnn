@@ -34,7 +34,7 @@ def calculate_ssim(pre, tar):
     the same outputs as MATLAB's
     img1, img2: [0, 255]
     '''
-    ssim = []
+    ssim_score = []
     for i in range(pre.shape[0]):
         img1 = pre[i, :, :, :]
         img1 = img1.cpu().numpy()
@@ -43,18 +43,19 @@ def calculate_ssim(pre, tar):
         if not img1.shape == img2.shape:
             raise ValueError('Input images must have the same dimensions.')
         if img1.ndim  == 2:
-            ssim.append(ssim(img1, img2))
+            ssim_score.append(ssim(img1, img2))
             # return ssim(img1, img2)
         elif img1.ndim  == 3:
             if img1.shape[0] == 3:
                 ssims = []
                 for j in range(3):
                     ssims.append(ssim(img1, img2))
-                ssim.append(np.array(ssims).mean())
+                ssim_score.append(np.array(ssims).mean())
                 # return np.array(ssims).mean()
             elif img1.shape[0] == 1:
-                return ssim(np.squeeze(img1), np.squeeze(img2))
+                ssim_score.append(ssim(np.squeeze(img1), np.squeeze(img2)))
+                # return ssim(np.squeeze(img1), np.squeeze(img2))
         else:
             raise ValueError('Wrong input image dimensions.')
 
-    return np.array(ssim).mean()
+    return np.array(ssim_score).mean()
