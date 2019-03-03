@@ -71,6 +71,7 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 print(prediction.shape)
                 ssim = calculate_ssim(prediction, target)
+                print(ssim)
                 mse = self.criterion(prediction, target)
                 psnr = 10 * log10(1 / mse.item())
                 avg_psnr += psnr
