@@ -36,7 +36,9 @@ def calculate_ssim(pre, tar):
     '''
     for i in range(pre.shape[0]):
         img1 = pre[i, :, :, :]
+        img1 = img1.numpy()
         img2 = tar[i, :, :, :]
+        img2 = img2.numpy()
         if not img1.shape == img2.shape:
             raise ValueError('Input images must have the same dimensions.')
         if img1.ndim  == 2:
