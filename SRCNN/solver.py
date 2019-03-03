@@ -49,6 +49,7 @@ class SRCNNTrainer(object):
         self.model.train()
         train_loss = 0
         for batch_num, (data, target) in enumerate(self.training_loader):
+            print(batch_num)
             data, target = data.to(self.device), target.to(self.device)
             self.optimizer.zero_grad()
             loss = self.criterion(self.model(data), target)
