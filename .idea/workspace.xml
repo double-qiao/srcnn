@@ -244,17 +244,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="img_zip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="img_zip" type="462c0819:PsiDirectoryNode" />
+              <item name="srcnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="srcnn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="img_zip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="img_zip" type="462c0819:PsiDirectoryNode" />
-              <item name="dataset" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="img_zip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="img_zip" type="462c0819:PsiDirectoryNode" />
+              <item name="srcnn" type="b2602c69:ProjectViewProjectNode" />
+              <item name="srcnn" type="462c0819:PsiDirectoryNode" />
               <item name="SRCNN" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
