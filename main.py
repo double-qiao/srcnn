@@ -29,7 +29,7 @@ def main():
     print('===> Loading datasets')
     train_set = get_training_set()
     test_set = get_test_set()
-    training_data_loader = DataLoader(dataset=train_set, batch_size=args.batchSize, shuffle=True)
+    training_data_loader = DataLoader(dataset=train_set, batch_size=args.batchSize, shuffle=False)
     testing_data_loader = DataLoader(dataset=test_set, batch_size=args.testBatchSize, shuffle=False)
 
     model = SRCNNTrainer(args, training_data_loader, testing_data_loader)
