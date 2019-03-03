@@ -17,8 +17,8 @@ def load_img(filepath):
 class MyDataset_train(data.Dataset):
     def __init__(self, image_dir, input_transform=None, target_transform=None):
         super(MyDataset_train, self).__init__()
-        self.image_filenames_train_input = [join(image_dir, x) for x in listdir(image_dir+"/DIV2K_train_LR_bicubic/X4") if is_image_file(x)]
-        self.image_filenames_train_target = [join(image_dir, x) for x in listdir(image_dir+"/DIV2K_train_HR") if is_image_file(x)]
+        self.image_filenames_input = [join(image_dir, x) for x in listdir(image_dir+"/DIV2K_train_LR_bicubic/X4") if is_image_file(x)]
+        self.image_filenames_target = [join(image_dir, x) for x in listdir(image_dir+"/DIV2K_train_HR") if is_image_file(x)]
 
         self.input_transform = input_transform
         self.target_transform = target_transform
@@ -34,7 +34,7 @@ class MyDataset_train(data.Dataset):
         return input_image, target
 
     def __len__(self):
-        return len(self.image_filenames_input)
+        return len(self.image_filenames_train_input)
 
 
 class MyDataset_test(data.Dataset):
