@@ -13,7 +13,8 @@ def target_transform():
 def get_training_set():
     # root_dir = get_data_set()
     # train_dir = join(root_dir, "train")
-    train_dir = "/home/s1825980/datasets/DIV2K"
+    # train_dir = "/home/s1825980/datasets/DIV2K"
+    train_dir = "/home/s1825980/datasets/valid_div2k"
     return MyDataset_train(train_dir,
                              input_transform = input_transform(),
                              target_transform = target_transform())
