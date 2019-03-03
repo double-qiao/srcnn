@@ -3,7 +3,7 @@ import argparse
 from torch.utils.data import DataLoader
 from SRCNN.solver import SRCNNTrainer
 from dataset.data import get_training_set, get_test_set
-from evaluate import calculate_ssim
+
 
 # ===========================================================
 # Training settings

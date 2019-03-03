@@ -7,7 +7,7 @@ import torch.backends.cudnn as cudnn
 
 from SRCNN.model import Net
 from progressbar import *
-
+from evaluate import calculate_ssim
 
 
 class SRCNNTrainer(object):
