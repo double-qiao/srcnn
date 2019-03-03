@@ -35,9 +35,9 @@ def calculate_ssim(pre, tar):
     img1, img2: [0, 255]
     '''
     ssim = []
+    print(pre.shape[0])
     for i in range(pre.shape[0]):
         img1 = pre[i, :, :, :]
-        print(img1.shape)
         img1 = img1.cpu().numpy()
         img2 = tar[i, :, :, :]
         img2 = img2.cpu().numpy()
