@@ -3,7 +3,7 @@ import torch.nn as nn
 
 
 class Net(torch.nn.Module):
-    def __init__(self, num_channels, base_filter, upscale_factor=2):
+    def __init__(self, num_channels, base_filter, upscale_factor=4):
         super(Net, self).__init__()
 
         self.layers = torch.nn.Sequential(
