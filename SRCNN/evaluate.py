@@ -37,6 +37,7 @@ def calculate_ssim(pre, tar):
     ssim = []
     for i in range(pre.shape[0]):
         img1 = pre[i, :, :, :]
+        print(img1.shape)
         img1 = img1.cpu().numpy()
         img2 = tar[i, :, :, :]
         img2 = img2.cpu().numpy()
@@ -57,4 +58,4 @@ def calculate_ssim(pre, tar):
         else:
             raise ValueError('Wrong input image dimensions.')
 
-    return np.array(ssim).mean() 
+    return np.array(ssim).mean()
