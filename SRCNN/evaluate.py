@@ -36,15 +36,15 @@ def calculate_ssim(img1, img2):
     '''
     if not img1.shape == img2.shape:
         raise ValueError('Input images must have the same dimensions.')
-    if len(img1.shape) == 2:
+    if len(img1.shape) - 1 == 2:
         return ssim(img1, img2)
-    elif len(img1.shape) == 3:
-        if img1.shape[2] == 3:
+    elif len(img1.shape) -1 == 3:
+        if img1.shape[1] == 3:
             ssims = []
             for i in range(3):
                 ssims.append(ssim(img1, img2))
             return np.array(ssims).mean()
-        elif img1.shape[2] == 1:
+        elif img1.shape[1] == 1:
             return ssim(np.squeeze(img1), np.squeeze(img2))
     else:
         raise ValueError('Wrong input image dimensions.')
