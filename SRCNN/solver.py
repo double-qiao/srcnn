@@ -75,6 +75,7 @@ class SRCNNTrainer(object):
                     img = prediction[i, :, :, :]
                     img = img.cpu().numpy()
                     img_arr = np.reshape(img, (img.shape[1], img.shape[2], img.shape[0]))
+                    print(img_arr.shape)
                     Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
                     Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
