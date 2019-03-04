@@ -82,7 +82,7 @@ class SRCNNTrainer(object):
                 data, target = data.to(self.device), target.to(self.device)
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
-                    img = prediction[i, :, :, :]
+                    img = prediction[i]
                     assert(img.dim() == 3)
                     img = img.mul(255.0)
                     img = img.cpu().clone()

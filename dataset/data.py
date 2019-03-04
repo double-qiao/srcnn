@@ -5,10 +5,20 @@ def get_data_set():
     return './dataset'
 
 def input_transform():
-    return ToTensor()
+
+    return transforms.Compose(
+        [
+            transforms.ToTensor()
+        ]
+    )
 
 def target_transform():
-    return ToTensor()
+
+    return transforms.Compose(
+        [
+            transforms.ToTensor()
+        ]
+    )
 
 def get_training_set():
     # root_dir = get_data_set()
