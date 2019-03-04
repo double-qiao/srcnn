@@ -51,7 +51,7 @@ class SRCNNTrainer(object):
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 
-    def tensor_to_PIL(tensor):
+    def tensor_to_PIL(self, tensor):
         image = tensor.cpu().clone()
         image = image.squeeze(0)
         image = transforms.ToPILImage(image)
