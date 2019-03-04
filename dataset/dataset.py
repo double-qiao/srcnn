@@ -13,6 +13,12 @@ def load_img(filepath):
     img = Image.open(filepath)
     return img
 
+def tensor_to_PIL(tensor):
+    image = tensor.cpu().clone()
+    image = image.squeeze(0)
+    image = transforms.ToPILImage(image)
+    return image
+
 
 class MyDataset_train(data.Dataset):
     def __init__(self, image_dir, input_transform=None, target_transform=None):

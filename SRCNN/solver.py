@@ -11,6 +11,9 @@ from SRCNN.evaluate import calculate_ssim, calculate_psnr
 from PIL import Image
 
 
+
+
+
 class SRCNNTrainer(object):
     def __init__(self, config, training_loader, testing_loader):
         super(SRCNNTrainer, self).__init__()
@@ -48,6 +51,12 @@ class SRCNNTrainer(object):
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 
+    def tensor_to_PIL(tensor):
+        image = tensor.cpu().clone()
+        image = image.squeeze(0)
+        image = transforms.ToPILImage(image)
+        return image
+
     def train(self):
         self.model.train()
         train_loss = 0
@@ -73,7 +82,7 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
-                    Img = transforms.ToPILImage()(img).convert('RGB')
+                    Img = self.tensor_to_PIL(img)
                     # img = img.cpu().numpy()
                     # img_arr = np.transpose(img, (1, 2, 0))
                     # print(img_arr.shape)
