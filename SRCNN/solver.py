@@ -25,6 +25,8 @@ class SRCNNTrainer(object):
         self.upscale_factor = config.upscale_factor
         self.training_loader = training_loader
         self.testing_loader = testing_loader
+        self.train_batchsize = config.batchSize
+        self.test_batchsize = config.testBatchSize
 
     def build_model(self):
         self.model = Net(num_channels=3, base_filter=64, upscale_factor=self.upscale_factor).to(self.device)
@@ -57,7 +59,7 @@ class SRCNNTrainer(object):
             self.optimizer.step()
             ProgressBar(batch_num, len(self.training_loader), 'Loss: %.4f' % (train_loss / (batch_num + 1)))
 
-        print("    Average Loss: {:.4f}".format(train_loss / len(self.training_loader)))
+        print("    Average Loss: {:.4f}".format(train_loss / (len(self.training_loader) / self.train_batchsize)))
 
     def test(self):
         self.model.eval()
@@ -80,7 +82,7 @@ class SRCNNTrainer(object):
                 avg_ssim += ssim
                 ProgressBar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
 
-        print(" ----Average PSNR/SSIM results for ----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / (len(self.testing_loader)/config.batchSize), avg_ssim / (len(self.testing_loader)/config.batchSize)))
+        print(" ----Average PSNR/SSIM results for ----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / (len(self.testing_loader)/self.test_batchsize), avg_ssim / (len(self.testing_loader)/self.test_batchsize)))
 
     def run(self):
         self.build_model()
