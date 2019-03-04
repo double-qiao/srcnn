@@ -53,7 +53,7 @@ class SRCNNTrainer(object):
 
     def tensor_to_np(self, tensor):
         img = tensor.mul(255).byte()
-        img = img.cpu().numpy().squeeze(0).transpose((1, 2, 0))
+        img = img.cpu().numpy().transpose((1, 2, 0))
         return img
 
     def train(self):
