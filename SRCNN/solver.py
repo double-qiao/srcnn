@@ -53,7 +53,6 @@ class SRCNNTrainer(object):
 
     def tensor_to_PIL(self, tensor):
         image = tensor.cpu().clone()
-        image = image.squeeze(0)
         image = transforms.ToPILImage()(image)
         return image
 
