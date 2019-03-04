@@ -76,7 +76,7 @@ class SRCNNTrainer(object):
                 avg_ssim += ssim
                 ProgressBar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
 
-        print(" ----Average PSNR/SSIM results for {}----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / len(self.testing_loader), avg_ssim / len(self.testing_loader)))
+        print(" ----Average PSNR/SSIM results for ----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / len(self.testing_loader), avg_ssim / len(self.testing_loader)))
 
     def run(self):
         self.build_model()
