@@ -72,6 +72,7 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
+                    img = img.cpu().numpy()
                     string = str((self.test_batchsize*batch_num)+i)
                     img.save("./predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
