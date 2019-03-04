@@ -8,6 +8,7 @@ import torch.backends.cudnn as cudnn
 from SRCNN.model import Net
 from progressbar import *
 from SRCNN.evaluate import calculate_ssim, calculate_psnr
+from PIL import Image
 
 
 class SRCNNTrainer(object):
@@ -73,6 +74,7 @@ class SRCNNTrainer(object):
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
                     img = img.cpu().numpy()
+                    img = Image.fromarray(img, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
                     img.save("./predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
