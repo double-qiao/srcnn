@@ -76,7 +76,7 @@ class SRCNNTrainer(object):
                     img = img.cpu().numpy()
                     img = Image.fromarray(img, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
-                    img.save("./predict/" + string +'.jpg')
+                    img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
