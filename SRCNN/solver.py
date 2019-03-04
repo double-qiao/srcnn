@@ -101,7 +101,7 @@ class SRCNNTrainer(object):
                 #     # img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 #     torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
                 #                                  scale_each=False, pad_value=0)
-                torchvision.utils.save_image(prediction, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8,
+                torchvision.utils.save_image(prediction, "/home/s1825980/srcnn/SRCNN/predict/", nrow=8,
                                              padding=2, normalize=False, range=None, scale_each=False, pad_value=0)
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
