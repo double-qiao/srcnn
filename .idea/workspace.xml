@@ -71,12 +71,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1448" />
+          <entry key="py" value="1455" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1448" />
+          <entry key="Python" value="1455" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -144,8 +144,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SRCNN/solver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="86" column="32" lean-forward="true" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+            <state relative-caret-position="251">
+              <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="40" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -458,8 +458,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SRCNN/solver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="86" column="32" lean-forward="true" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+        <state relative-caret-position="251">
+          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="40" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>

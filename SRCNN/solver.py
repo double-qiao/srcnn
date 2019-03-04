@@ -1,5 +1,5 @@
 from __future__ import print_function
-
+from torchvision import transforms
 # from math import log10
 
 import torch
@@ -73,10 +73,11 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
-                    img = img.cpu().numpy()
-                    img_arr = np.transpose(img, (1, 2, 0))
-                    print(img_arr.shape)
-                    Img = Image.fromarray(img_arr, mode='RGB')
+                    Img = transforms.ToPILImage()(img).convert('RGB')
+                    # img = img.cpu().numpy()
+                    # img_arr = np.transpose(img, (1, 2, 0))
+                    # print(img_arr.shape)
+                    # Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
                     Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
