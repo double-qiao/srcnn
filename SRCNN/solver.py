@@ -53,7 +53,7 @@ class SRCNNTrainer(object):
 
     def tensor_to_np(self, tensor):
         img_arr = tensor.cpu().numpy()
-        img = np.transpose(img_arr[[2, 1, 0], :, :], (1, 2, 0))
+        img = np.transpose(img_arr, (1, 2, 0))
         img = (img * 255.0).round()
 
         return img
