@@ -85,6 +85,7 @@ class SRCNNTrainer(object):
                     img = prediction[i]
                     assert(img.dim() == 3)
                     img = img.mul(255.0)
+                    img = tf.rint(img, name=None)
                     img = img.cpu().clone()
                     img_PIL = transforms.ToPILImage()(img)
                     # img_arr = (np.array(img_PIL)*255.0).round()
