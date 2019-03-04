@@ -51,10 +51,10 @@ class SRCNNTrainer(object):
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 
-    def tensor_to_PIL(self, tensor):
-        image = tensor.cpu().clone()
-        image = transforms.ToPILImage()(image)
-        return image
+    def tensor_to_np(tensor):
+        img = tensor.mul(255).byte()
+        img = img.cpu().numpy().squeeze(0).transpose((1, 2, 0))
+        return img
 
     def train(self):
         self.model.train()
@@ -81,13 +81,13 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
-                    Img = self.tensor_to_PIL(img)
+                    img_arr = self.tensor_to_np(img)
 
 
                     # img = img.cpu().numpy()
                     # img_arr = np.transpose(img, (1, 2, 0))
                     # print(img_arr.shape)
-                    # Img = Image.fromarray(img_arr, mode='RGB')
+                    Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
                     Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
