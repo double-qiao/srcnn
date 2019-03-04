@@ -52,8 +52,10 @@ class SRCNNTrainer(object):
         print("Checkpoint saved to {}".format(model_out_path))
 
     def tensor_to_np(self, tensor):
-        img = tensor.mul(255).byte()
-        img = img.cpu().numpy().transpose((1, 2, 0))
+        img_arr = img.cpu().numpy()
+        img = np.transpose(img_arr[[2, 1, 0], :, :], (1, 2, 0))
+        img = (img * 255.0).round()
+
         return img
 
     def train(self):
@@ -81,6 +83,7 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
+                    assert(img.dim() == 3)
                     img_arr = self.tensor_to_np(img)
 
 
