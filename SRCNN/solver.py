@@ -94,6 +94,6 @@ class SRCNNTrainer(object):
 
 
     def run_test(self):
-        self.model.eval()
         self.model = torch.load('model_path.pth')
+        self.model.eval()
         self.test()
