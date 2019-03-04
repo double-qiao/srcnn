@@ -84,10 +84,10 @@ class SRCNNTrainer(object):
                 for i in range(self.test_batchsize):
                     img = prediction[i]
                     assert(img.dim() == 3)
-                    img = img.mul(255.0)
-                    img = torch.ceil(img, out=None)
+                    # img = img.mul(255.0)
+                    # img = torch.ceil(img, out=None)
                     img = img.cpu().clone()
-                    img_PIL = transforms.ToPILImage()(img)
+                    img_PIL = transforms.ToPILImage()(img).convert('RGB')
                     # img_arr = (np.array(img_PIL)*255.0).round()
 
 
