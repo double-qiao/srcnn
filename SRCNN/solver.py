@@ -50,13 +50,13 @@ class SRCNNTrainer(object):
         model_out_path = "model_path.pth"
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
-
-    def tensor_to_np(self, tensor):
-        img_arr = tensor.cpu().numpy()
-        img = np.transpose(img_arr, (1, 2, 0))
-        img = (img * 255.0).round()
-
-        return img
+    #
+    # def tensor_to_np(self, tensor):
+    #     img_arr = tensor.cpu().numpy()
+    #     img = np.transpose(img_arr, (1, 2, 0))
+    #     img = (img * 255.0).round()
+    #
+    #     return img
 
     def train(self):
         self.model.train()
@@ -84,7 +84,10 @@ class SRCNNTrainer(object):
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
                     assert(img.dim() == 3)
-                    img_arr = self.tensor_to_np(img)
+                    Img = transforms.ToPILImage()(img)
+                    img_arr = (np.array(Img)*255.0).round()
+
+
 
 
                     # img = img.cpu().numpy()
@@ -92,7 +95,7 @@ class SRCNNTrainer(object):
                     # print(img_arr.shape)
                     Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
-                    Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
+                    img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
