@@ -1,7 +1,7 @@
 from __future__ import print_function
 from torchvision import transforms
 # from math import log10
-
+import torchvision
 import torch
 import torch.backends.cudnn as cudnn
 import numpy as np
@@ -86,8 +86,8 @@ class SRCNNTrainer(object):
                     assert(img.dim() == 3)
                     # img = img.mul(255.0)
                     # img = torch.ceil(img, out=None)
-                    img = img.cpu().clone()
-                    img_PIL = transforms.ToPILImage()(img).convert('RGB')
+                    # img = img.cpu().clone()
+                    # img_PIL = transforms.ToPILImage()(img).convert('RGB')
                     # img_arr = (np.array(img_PIL)*255.0).round()
 
 
@@ -98,7 +98,9 @@ class SRCNNTrainer(object):
                     # print(img_arr.shape)
                     # Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
-                    img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
+                    # img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
+                    torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
+                                                 scale_each=False, pad_value=0)
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
