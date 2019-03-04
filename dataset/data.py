@@ -1,4 +1,4 @@
-from torchvision.transforms import ToTensor
+from torchvision import transforms
 from os.path import join, basename
 from .dataset import MyDataset_train, MyDataset_test
 def get_data_set():

@@ -2,6 +2,7 @@ from os import listdir
 from os.path import join
 
 import torch.utils.data as data
+from torchvision import transforms
 from PIL import Image
 
 
