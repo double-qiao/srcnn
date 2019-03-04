@@ -84,8 +84,9 @@ class SRCNNTrainer(object):
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
                     assert(img.dim() == 3)
-                    Img = transforms.ToPILImage()(img)
-                    img_arr = (np.array(Img)*255.0).round()
+                    img = img.cpu().clone()
+                    img_PIL = transforms.ToPILImage()(img)
+                    img_arr = (np.array(img_PIL)*255.0).round()
 
 
 
@@ -95,7 +96,7 @@ class SRCNNTrainer(object):
                     # print(img_arr.shape)
                     Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
-                    img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
+                    Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
