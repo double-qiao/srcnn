@@ -51,7 +51,7 @@ class SRCNNTrainer(object):
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 
-    def tensor_to_np(tensor):
+    def tensor_to_np(self, tensor):
         img = tensor.mul(255).byte()
         img = img.cpu().numpy().squeeze(0).transpose((1, 2, 0))
         return img
