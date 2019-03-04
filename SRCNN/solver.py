@@ -52,7 +52,7 @@ class SRCNNTrainer(object):
         print("Checkpoint saved to {}".format(model_out_path))
 
     def tensor_to_np(self, tensor):
-        img_arr = img.cpu().numpy()
+        img_arr = tensor.cpu().numpy()
         img = np.transpose(img_arr[[2, 1, 0], :, :], (1, 2, 0))
         img = (img * 255.0).round()
 
