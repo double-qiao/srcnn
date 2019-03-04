@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import torch
 import torch.backends.cudnn as cudnn
-
+import numpy as np
 from SRCNN.model import Net
 from progressbar import *
 from SRCNN.evaluate import calculate_ssim, calculate_psnr
@@ -74,9 +74,10 @@ class SRCNNTrainer(object):
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
                     img = img.cpu().numpy()
-                    img = Image.fromarray(img, mode='RGB')
+                    img_arr = np.reshape(img, (img.shape[1], img.shape[2], img.shape[0]))
+                    Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
-                    img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
+                    Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
