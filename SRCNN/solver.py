@@ -81,26 +81,28 @@ class SRCNNTrainer(object):
             for batch_num, (data, target) in enumerate(self.testing_loader):
                 data, target = data.to(self.device), target.to(self.device)
                 prediction = self.model(data)
-                for i in range(self.test_batchsize):
-                    img = prediction[i]
-                    assert(img.dim() == 3)
-                    # img = img.mul(255.0)
-                    # img = torch.ceil(img, out=None)
-                    # img = img.cpu().clone()
-                    # img_PIL = transforms.ToPILImage()(img).convert('RGB')
-                    # img_arr = (np.array(img_PIL)*255.0).round()
-
-
-
-
-                    # img = img.cpu().numpy()
-                    # img_arr = np.transpose(img, (1, 2, 0))
-                    # print(img_arr.shape)
-                    # Img = Image.fromarray(img_arr, mode='RGB')
-                    string = str((self.test_batchsize*batch_num)+i)
-                    # img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
-                    torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
-                                                 scale_each=False, pad_value=0)
+                # for i in range(self.test_batchsize):
+                #     img = prediction[i]
+                #     assert(img.dim() == 3)
+                #     # img = img.mul(255.0)
+                #     # img = torch.ceil(img, out=None)
+                #     # img = img.cpu().clone()
+                #     # img_PIL = transforms.ToPILImage()(img).convert('RGB')
+                #     # img_arr = (np.array(img_PIL)*255.0).round()
+                #
+                #
+                #
+                #
+                #     # img = img.cpu().numpy()
+                #     # img_arr = np.transpose(img, (1, 2, 0))
+                #     # print(img_arr.shape)
+                #     # Img = Image.fromarray(img_arr, mode='RGB')
+                #     string = str((self.test_batchsize*batch_num)+i)
+                #     # img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
+                #     torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
+                #                                  scale_each=False, pad_value=0)
+                torchvision.utils.save_image(prediction, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8,
+                                             padding=2, normalize=False, range=None, scale_each=False, pad_value=0)
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
