@@ -7,7 +7,7 @@ import torch.backends.cudnn as cudnn
 
 from SRCNN.model import Net
 from progressbar import *
-from SRCNN.evaluate import calculate_ssim
+from SRCNN.evaluate import calculate_ssim, calculate_psnr
 
 
 class SRCNNTrainer(object):
@@ -68,6 +68,10 @@ class SRCNNTrainer(object):
             for batch_num, (data, target) in enumerate(self.testing_loader):
                 data, target = data.to(self.device), target.to(self.device)
                 prediction = self.model(data)
+                for i in range(config.batchSize):
+                    img = prediction[i, :, :, :]
+                    str = str((config.batchSize*batch_num)+i)
+                    img.save("./predict/"+'str'+'.jpg')
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
                 # psnr = 10 * log10(1 / mse.item())
@@ -87,6 +91,7 @@ class SRCNNTrainer(object):
             self.scheduler.step(epoch)
             if epoch == self.nEpochs:
                 self.save_model()
+
 
     def run_test(self):
         self.model.eval()
