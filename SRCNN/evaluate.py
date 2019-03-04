@@ -49,7 +49,7 @@ def calculate_ssim(pre, tar):
             if img1.shape[0] == 3:
                 ssims = []
                 for j in range(3):
-                    ssims.append(ssim(img1, img2))
+                    ssims.append(ssim(img1[j, :, :], img2[j, :, :]))
                 ssim_score.append(np.array(ssims).mean())
                 # return np.array(ssims).mean()
             elif img1.shape[0] == 1:
