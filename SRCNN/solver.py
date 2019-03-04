@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from math import log10
+# from math import log10
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -49,7 +49,6 @@ class SRCNNTrainer(object):
         self.model.train()
         train_loss = 0
         for batch_num, (data, target) in enumerate(self.training_loader):
-            print(batch_num)
             data, target = data.to(self.device), target.to(self.device)
             self.optimizer.zero_grad()
             loss = self.criterion(self.model(data), target)
@@ -70,13 +69,14 @@ class SRCNNTrainer(object):
                 data, target = data.to(self.device), target.to(self.device)
                 prediction = self.model(data)
                 ssim = calculate_ssim(prediction, target)
-                mse = self.criterion(prediction, target)
-                psnr = 10 * log10(1 / mse.item())
+                # mse = self.criterion(prediction, target)
+                # psnr = 10 * log10(1 / mse.item())
+                psnr = calculate_psnr(prediction, target)
                 avg_psnr += psnr
                 avg_ssim += ssim
                 ProgressBar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
 
-        print(" ----Average PSNR/SSIM results for ----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / len(self.testing_loader), avg_ssim / len(self.testing_loader)))
+        print(" ----Average PSNR/SSIM results for ----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / (len(self.testing_loader)/config.batchSize), avg_ssim / (len(self.testing_loader)/config.batchSize)))
 
     def run(self):
         self.build_model()

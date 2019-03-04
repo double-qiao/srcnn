@@ -59,3 +59,21 @@ def calculate_ssim(pre, tar):
             raise ValueError('Wrong input image dimensions.')
 
     return np.array(ssim_score).mean()
+
+def calculate_psnr(pre, tar):
+    # img1 and img2 have range [0, 255]
+    psnr_score = []
+    for i in range(pre.shape[0]):
+        img1 = pre[i, :, :, :]
+        img1 = img1.cpu().numpy()
+        img2 = tar[i, :, :, :]
+        img2 = img2.cpu().numpy()
+        img1 = img1.astype(np.float64)
+        img2 = img2.astype(np.float64)
+        mse = np.mean((img1 - img2)**2)
+        if mse == 0:
+            return float('inf')
+        # return 20 * math.log10(255.0 / math.sqrt(mse))
+        psnr_score.append(20 * math.log10(255.0 / math.sqrt(mse)))_
+
+    return np.array(psnr_score).mean()
