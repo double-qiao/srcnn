@@ -54,7 +54,7 @@ class SRCNNTrainer(object):
     def tensor_to_PIL(self, tensor):
         image = tensor.cpu().clone()
         image = image.squeeze(0)
-        image = transforms.ToPILImage(image)
+        image = transforms.ToPILImage()(image)
         return image
 
     def train(self):
@@ -82,12 +82,13 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
-                    img_arr = self.tensor_to_PIL(img)
+                    Img = self.tensor_to_PIL(img)
+
 
                     # img = img.cpu().numpy()
                     # img_arr = np.transpose(img, (1, 2, 0))
                     # print(img_arr.shape)
-                    Img = Image.fromarray(img_arr, mode='RGB')
+                    # Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
                     Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
