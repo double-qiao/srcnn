@@ -82,11 +82,12 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i, :, :, :]
-                    Img = self.tensor_to_PIL(img)
+                    img_arr = self.tensor_to_PIL(img)
+
                     # img = img.cpu().numpy()
                     # img_arr = np.transpose(img, (1, 2, 0))
                     # print(img_arr.shape)
-                    # Img = Image.fromarray(img_arr, mode='RGB')
+                    Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize*batch_num)+i)
                     Img.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
                 ssim = calculate_ssim(prediction, target)
