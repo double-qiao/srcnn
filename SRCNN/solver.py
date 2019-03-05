@@ -88,7 +88,7 @@ class SRCNNTrainer(object):
             self.optimizer.step()
             progress_bar(batch_num, len(self.training_loader), 'Loss: %.4f' % (train_loss / (batch_num + 1)))
 
-        print("    Average Loss: {:.4f}".format(train_loss / (len(self.training_loader) / self.train_batchsize)))
+        print("    Average Loss: {:.4f}".format(train_loss / len(self.training_loader)))
 
     def test(self):
         self.model.eval()
