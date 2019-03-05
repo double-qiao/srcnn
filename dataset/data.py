@@ -1,6 +1,8 @@
 from torchvision import transforms
 from os.path import join, basename
 from .dataset import MyDataset_train, MyDataset_test
+from PIL import Image
+
 def get_data_set():
     return './dataset'
 
