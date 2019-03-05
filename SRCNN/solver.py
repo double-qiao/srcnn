@@ -6,7 +6,7 @@ import torch
 import torch.backends.cudnn as cudnn
 import numpy as np
 from SRCNN.model import Net
-from progress_bar.py import progress_bar
+from SRCNN.progress_bar import progress_bar
 from SRCNN.evaluate import calculate_ssim, calculate_psnr
 from PIL import Image
 
