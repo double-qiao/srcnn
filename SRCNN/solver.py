@@ -83,7 +83,8 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i]
-                    print(img.shape)
+                    if batch_num == 0:
+                        print(img)
                     assert(img.dim() == 3)
                     # img = img.mul(255.0)
                     # img = torch.ceil(img, out=None)

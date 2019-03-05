@@ -8,8 +8,8 @@ import random
 import torch
 
 def ssim(img1, img2):
-    C1 = (0.01 * 255)**2
-    C2 = (0.03 * 255)**2
+    C1 = (0.01 * 1)**2
+    C2 = (0.03 * 1)**2
 
     img1 = img1.astype(np.float64)
     img2 = img2.astype(np.float64)
@@ -74,6 +74,6 @@ def calculate_psnr(pre, tar):
         if mse == 0:
             return float('inf')
         # return 20 * math.log10(255.0 / math.sqrt(mse))
-        psnr_score.append(20 * math.log10(255.0 / math.sqrt(mse)))
+        psnr_score.append(20 * math.log10(1.0 / math.sqrt(mse)))
 
     return np.array(psnr_score).mean()
