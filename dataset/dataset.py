@@ -31,7 +31,7 @@ def resize_img(img, n):
     # arr_img = np.asarray(img)
     # print(img.shape[1])
     # img_resize = cv2.resize(img, (int(img.shape[1]/n), int(img.shape[0]/n)), interpolation=cv2.INTER_CUBIC)
-    img_resize = img.resize((img.size[0] / n), int(img.size[1] / n), Image.BICUBIC)
+    img_resize = img.resize((img.size[0] / n, img.size[1] / n), Image.BICUBIC)
     return img_resize
 
 # def tensor_to_PIL(tensor):
