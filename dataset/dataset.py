@@ -67,7 +67,7 @@ class MyDataset_train(data.Dataset):
         return input_image, target
 
     def __len__(self):
-        return len(self.image_filenames_input)
+        return len(self.image_filenames)
 
 
 class MyDataset_test(data.Dataset):
@@ -91,4 +91,4 @@ class MyDataset_test(data.Dataset):
         return input_image, target
 
     def __len__(self):
-        return len(self.image_filenames_input)
+        return len(self.image_filenames)
