@@ -137,7 +137,8 @@ class SRCNNTrainer(object):
                 psnr = calculate_psnr(prediction, target)
                 avg_psnr += psnr
                 avg_ssim += ssim
-                progress_bar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
+                progress_bar(batch_num, len(self.testing_loader), 'PSNR: %.4f' % (avg_psnr / (batch_num + 1)))
+                progress_bar(batch_num, len(self.testing_loader), 'SSIM: %.4f' % (avg_ssim / (batch_num + 1)))
 
         print(" ----Average PSNR/SSIM results for ----\n\tPSNR: {:.4f} dB; SSIM: {:.4f}\n".format(avg_psnr / (len(self.testing_loader)/self.test_batchsize), avg_ssim / (len(self.testing_loader)/self.test_batchsize)))
 
