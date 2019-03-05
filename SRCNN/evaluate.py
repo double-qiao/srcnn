@@ -74,6 +74,6 @@ def calculate_psnr(pre, tar):
         if mse == 0:
             return float('inf')
         # return 20 * math.log10(255.0 / math.sqrt(mse))
-        psnr_score.append(10 * math.log10(1.0 / math.sqrt(mse)))
+        psnr_score.append(20 * math.log10(1.0 / math.sqrt(mse)))
 
     return np.array(psnr_score).mean()
