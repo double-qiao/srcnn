@@ -17,6 +17,7 @@ def load_img(filepath):
 
 def resize_img(img):
     img = np.array(img)
+    print(img)
     n = 4
     if img.shape[1] % n == 0 and img.shape[0] % n == 0:
         pass
