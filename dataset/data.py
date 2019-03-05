@@ -10,7 +10,7 @@ def input_transform_test():
 
     return transforms.Compose(
         [
-            transforms.Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
+
             transforms.ToTensor()
 
         ]
@@ -59,5 +59,5 @@ def get_test_set():
     test_dir = "/home/s1825980/datasets/valid_div2k"
     upscale_factor = 4
     return MyDataset_test(test_dir,
-                             input_transform=input_transform_test(upscale_factor),
+                             input_transform=input_transform_test(),
                              target_transform=target_transform_test())
