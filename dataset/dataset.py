@@ -51,7 +51,7 @@ class MyDataset_train(data.Dataset):
         # self.image_filenames_target = [
         #     join(image_dir + "/DIV2K_valid_HR(srgan for X16)/DIV2K_valid_HR_ground_truth(srgan for X16)", x) for x in
         #     listdir(image_dir + "/DIV2K_valid_HR(srgan for X16)/DIV2K_valid_HR_ground_truth(srgan for X16)") if
-            is_image_file(x)]
+        #     is_image_file(x)]
         self.input_transform = input_transform
         self.target_transform = target_transform
 
