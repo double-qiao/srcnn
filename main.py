@@ -34,7 +34,7 @@ def main():
 
     model = SRCNNTrainer(args, training_data_loader, testing_data_loader)
 
-    model.run_test()
+    model.run()
 
 
 
