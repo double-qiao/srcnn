@@ -8,7 +8,7 @@ def input_transform_test():
 
     return transforms.Compose(
         [
-            Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
+            transforms.Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
             transforms.ToTensor()
 
         ]
@@ -24,17 +24,17 @@ def target_transform_test():
 
 
 def input_transform_train(crop_size, upscale_factor):
-    return Compose([
-        CenterCrop(crop_size),
-        Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
-        ToTensor(),
+    return transforms.Compose([
+        transforms.CenterCrop(crop_size),
+        transforms.Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
+        transforms.ToTensor(),
     ])
 
 
 def target_transform_train(crop_size):
-    return Compose([
-        CenterCrop(crop_size),
-        ToTensor(),
+    return transforms.Compose([
+        transforms.CenterCrop(crop_size),
+        transforms.ToTensor(),
     ])
 
 
