@@ -15,8 +15,9 @@ def load_img(filepath):
     img = Image.open(filepath)
     return img
 
-def resize_img(img, n):
+def resize_img(img):
     img = np.array(img)
+    n = 4
     if img.shape[1] % n == 0 and img.shape[0] % n == 0:
         pass
     elif img.shape[1] % n == 0:
@@ -31,7 +32,7 @@ def resize_img(img, n):
     # arr_img = np.asarray(img)
     # print(img.shape[1])
     # img_resize = cv2.resize(img, (int(img.shape[1]/n), int(img.shape[0]/n)), interpolation=cv2.INTER_CUBIC)
-    img_resize = img.resize((img.size[0] / n, img.size[1] / n), Image.BICUBIC)
+    img_resize = img.resize((int(img.size[0] / n), int(img.size[1] / n)), Image.BICUBIC)
     return img_resize
 
 # def tensor_to_PIL(tensor):
@@ -58,8 +59,7 @@ class MyDataset_train(data.Dataset):
 
     def __getitem__(self, index):
         target = load_img(self.image_filenames[index])
-        downscale_factor = 4
-        input_image = resize_img(target, downscale_factor)
+        input_image = resize_img(target)
         if self.input_transform:
             input_image = self.input_transform(input_image)
         if self.target_transform:
@@ -82,8 +82,7 @@ class MyDataset_test(data.Dataset):
 
     def __getitem__(self, index):
         target = load_img(self.image_filenames[index])
-        downscale_factor = 4
-        input_image = resize_img(target, downscale_factor)
+        input_image = resize_img(target)
         if self.input_transform:
             input_image = self.input_transform(input_image)
         if self.target_transform:
