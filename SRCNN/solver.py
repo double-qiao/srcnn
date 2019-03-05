@@ -58,6 +58,24 @@ class SRCNNTrainer(object):
     #
     #     return img
 
+    def save_image(self, tensor, filename, nrow=8, padding=2,
+                   normalize=False, range=None, scale_each=False, pad_value=0):
+        """Save a given Tensor into an image file.
+
+        Args:
+            tensor (Tensor or list): Image to be saved. If given a mini-batch tensor,
+                saves the tensor as a grid of images by calling ``make_grid``.
+            **kwargs: Other arguments are documented in ``make_grid``.
+        """
+        from PIL import Image
+        grid = torchvision.utils.make_grid(tensor, nrow=nrow, padding=padding, pad_value=pad_value,
+                         normalize=normalize, range=range, scale_each=scale_each)
+        ndarr = grid.mul(255).clamp(0, 255).byte().permute(1, 2, 0).cpu().numpy()
+        im = Image.fromarray(ndarr)
+        im.save(filename)
+
+        return ndarr
+
     def train(self):
         self.model.train()
         train_loss = 0
@@ -83,8 +101,7 @@ class SRCNNTrainer(object):
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i]
-                    if batch_num == 0:
-                        print(img)
+
                     assert(img.dim() == 3)
                     # img = img.mul(255.0)
                     # img = torch.ceil(img, out=None)
@@ -99,10 +116,19 @@ class SRCNNTrainer(object):
                     # img_arr = np.transpose(img, (1, 2, 0))
                     # print(img_arr.shape)
                     # Img = Image.fromarray(img_arr, mode='RGB')
-                    string = str((self.test_batchsize*batch_num)+i)
+                    if batch_num == 0:
+                        im = self.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/", nrow=8, padding=2,
+                                             normalize=False, range=None, scale_each=False, pad_value=0)
+                        print(im)
+
+                    else:
+                        string = str((self.test_batchsize*batch_num)+i)
+
+
                     # img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
-                    torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
+                        torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
                                                  scale_each=False, pad_value=0)
+
 
                 ssim = calculate_ssim(prediction, target)
                 # mse = self.criterion(prediction, target)
