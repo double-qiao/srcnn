@@ -99,8 +99,7 @@ class SRCNNTrainer(object):
         with torch.no_grad():
             for batch_num, (data, target) in enumerate(self.testing_loader):
                 data, target = data.to(self.device), target.to(self.device)
-                target = target.cpu().numpy()
-                target = np.transpose(target, (0, 1, 3, 2))
+                target = target.permute(0, 1, 3, 2)
                 prediction = self.model(data)
                 for i in range(self.test_batchsize):
                     img = prediction[i]
