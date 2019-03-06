@@ -6,6 +6,7 @@ import cv2
 from torchvision.utils import make_grid
 import random
 import torch
+import numpy as np
 
 def ssim(img1, img2):
     C1 = (0.01 * 1)**2
@@ -41,9 +42,12 @@ def calculate_ssim(pre, tar):
         img2 = tar[i, :, :, :]
         img2 = img2.cpu().numpy()
         if not img1.shape == img2.shape:
-            print(img1.shape)
-            print(img2.shape)
-            raise ValueError('Input images must have the same dimensions.')
+            # print(img1.shape)
+            # print(img2.shape)
+            img2 = img2.transpose(0, 2, 1)
+            if not img1.shape == img2.shape:
+                raise ValueError('Input images must have the same dimensions.')
+            
         if img1.ndim  == 2:
             ssim_score.append(ssim(img1, img2))
             # return ssim(img1, img2)
