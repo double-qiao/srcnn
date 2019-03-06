@@ -20,6 +20,7 @@ def target_transform_test():
 
     return transforms.Compose(
         [
+
             transforms.ToTensor()
         ]
     )
