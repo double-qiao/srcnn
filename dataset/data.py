@@ -56,7 +56,8 @@ def get_training_set():
 def get_test_set():
     # root_dir = get_data_set()
     # test_dir = join(root_dir, "test")
-    test_dir = "/home/s1825980/datasets/valid_div2k"
+    # test_dir = "/home/s1825980/datasets/valid_div2k"
+    test_dir = "/home/s1825980/datasets/DIV2K"
     upscale_factor = 4
     return MyDataset_test(test_dir,
                              input_transform=input_transform_test(),
