@@ -148,10 +148,10 @@ class SRCNNTrainer(object):
         for epoch in range(1, self.nEpochs + 1):
             print("\n===> Epoch {} starts:".format(epoch))
             self.train()
-            self.test()  # validate
+            # self.test()  # validate
             self.scheduler.step(epoch)
-            if epoch == self.nEpochs:
-                self.save_model()
+            # if epoch == self.nEpochs:
+            self.save_model()
 
 
     def run_test(self):
