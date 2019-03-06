@@ -104,8 +104,6 @@ class SRCNNTrainer(object):
                     img = prediction[i]
 
                     assert(img.dim() == 3)
-                    print(img.shape)
-                    print(target.shape)
                     # img = img.mul(255.0)
                     # img = torch.ceil(img, out=None)
                     # img = img.cpu().clone()
