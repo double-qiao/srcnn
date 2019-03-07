@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9db6492b-a4b2-44d4-bc66-1def1c588f8b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/dataset/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dataset/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/dataset.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -135,11 +134,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dataset/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="73" column="47" lean-forward="true" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="47" />
+            <state relative-caret-position="143">
+              <caret line="62" column="107" selection-start-line="62" selection-start-column="107" selection-end-line="62" selection-end-column="107" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
-                <marker date="1551917892346" expanded="true" signature="329:330" ph="..." />
+                <marker date="1551919236344" expanded="true" signature="329:330" ph="..." />
               </folding>
             </state>
           </provider>
@@ -477,11 +476,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dataset/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="73" column="47" lean-forward="true" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="47" />
+        <state relative-caret-position="143">
+          <caret line="62" column="107" selection-start-line="62" selection-start-column="107" selection-end-line="62" selection-end-column="107" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
-            <marker date="1551917892346" expanded="true" signature="329:330" ph="..." />
+            <marker date="1551919236344" expanded="true" signature="329:330" ph="..." />
           </folding>
         </state>
       </provider>
