@@ -28,7 +28,7 @@ def target_transform_test():
 
 def input_transform_train(crop_size, upscale_factor):
     return transforms.Compose([
-        transforms.RandomCrop(crop_size),
+        transforms.CenterCrop(crop_size),
         transforms.Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
         transforms.RandomHorizontalFlip(p = 0.75),
         transforms.ToTensor(),
@@ -37,7 +37,7 @@ def input_transform_train(crop_size, upscale_factor):
 
 def target_transform_train(crop_size):
     return transforms.Compose([
-        transforms.RandomCrop(crop_size),
+        transforms.CenterCrop(crop_size),
         transforms.ToTensor(),
     ])
 
