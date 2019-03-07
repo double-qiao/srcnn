@@ -26,7 +26,7 @@ class MyDataset_train(data.Dataset):
     def __init__(self, image_dir, input_transform=None, target_transform=None):
         super(MyDataset_train, self).__init__()
         # self.image_filenames_input = [join(image_dir+"/DIV2K_train_LR_bicubic/X4", x) for x in listdir(image_dir+"/DIV2K_train_LR_bicubic/X4") if is_image_file(x)]
-        self.image_filenames = [join(image_dir+"/DIV2K_train_HR", x) for x in listdir(image_dir+"/DIV2K_train_HR") if is_image_file(x)]
+        self.image_filenames = [join(image_dir+"/train_HR", x) for x in listdir(image_dir+"/train_HR") if is_image_file(x)]
 
         # self.image_filenames_input = [join(image_dir + "/DIV2K_valid_LR_bicubic_X4/X4", x) for x in
         #                               listdir(image_dir + "/DIV2K_valid_LR_bicubic_X4/X4") if is_image_file(x)]

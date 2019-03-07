@@ -28,15 +28,16 @@ def target_transform_test():
 
 def input_transform_train(crop_size, upscale_factor):
     return transforms.Compose([
-        transforms.CenterCrop(crop_size),
+        transforms.RandomCrop(crop_size),
         transforms.Resize(crop_size // upscale_factor, interpolation=Image.BICUBIC),
+        transforms.RandomHorizontalFlip(p = 0.75),
         transforms.ToTensor(),
     ])
 
 
 def target_transform_train(crop_size):
     return transforms.Compose([
-        transforms.CenterCrop(crop_size),
+        transforms.RandomCrop(crop_size),
         transforms.ToTensor(),
     ])
 
@@ -44,9 +45,10 @@ def target_transform_train(crop_size):
 def get_training_set():
     # root_dir = get_data_set()
     # train_dir = join(root_dir, "train")
-    train_dir = "/home/s1825980/datasets/DIV2K"
+    train_dir = "/home/s1825980/srcnn/"
     # train_dir = "/home/s1825980/datasets/valid_div2k"
-    crop_size = 648
+    # crop_size = 648
+    crop_size = 256
     upscale_factor = 4
 
     return MyDataset_train(train_dir,
