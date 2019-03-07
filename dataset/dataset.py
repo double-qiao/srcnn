@@ -4,6 +4,7 @@ from os.path import join
 import torch.utils.data as data
 from torchvision import transforms
 from PIL import Image
+import os
 
 
 def is_image_file(filename):
