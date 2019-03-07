@@ -44,7 +44,9 @@ def calculate_ssim(pre, tar):
         if not img1.shape == img2.shape:
             # print(img1.shape)
             # print(img2.shape)
-            raise ValueError('Input images must have the same dimensions.')
+            img2 = img2.transpose(0, 2, 1)
+            if not img1.shape == img2.shape:
+                raise ValueError('Input images must have the same dimensions.')
 
         if img1.ndim  == 2:
             ssim_score.append(ssim(img1, img2))
@@ -74,7 +76,8 @@ def calculate_psnr(pre, tar):
         img2 = img2.cpu().numpy()
         img1 = img1.astype(np.float64)
         img2 = img2.astype(np.float64)
-        img2 = img2.transpose()
+        if not img1.shape == img2.shape:
+            img2 = img2.transpose(0, 2, 1)
         mse = np.mean((img1 - img2)**2)
         if mse == 0:
             return float('inf')
