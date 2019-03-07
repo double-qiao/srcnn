@@ -59,8 +59,8 @@ class MyDataset_test(data.Dataset):
         # self.image_filenames_target = [join(image_dir+"/DIV2K_valid_HR(srgan for X16)/DIV2K_valid_HR_ground_truth(srgan for X16)", x)
         #                                for x in listdir(image_dir+"/DIV2K_valid_HR(srgan for X16)/DIV2K_valid_HR_ground_truth(srgan for X16)") if is_image_file(x)]
 
-        self.image_filenames_input = [image_dir + join("X4", x) for x in listdir(image_dir + "X4") if is_image_file(x)]
-        self.image_filenames_target = [join(image_dir + "DIV2K_train_HR", x) for x in listdir(image_dir + "DIV2K_train_HR")
+        self.image_filenames_input = [image_dir + join("X4", x) for x in sorted(os.listdir(image_dir + "X4")) if is_image_file(x)]
+        self.image_filenames_target = [join(image_dir + "DIV2K_train_HR", x) for x in sorted(os.listdir(image_dir) + "DIV2K_train_HR")
                                 if is_image_file(x)]
 
         self.input_transform = input_transform
