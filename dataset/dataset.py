@@ -33,7 +33,7 @@ class MyDataset_train(data.Dataset):
         self.target_transform = target_transform
 
     def __getitem__(self, index):
-        input = load_img(self.image_filenames[index])
+        input = load_img(self.image_filenames_input[index])
         target = input
         if self.input_transform:
             input = self.input_transform(input)
@@ -43,7 +43,7 @@ class MyDataset_train(data.Dataset):
         return input, target
 
     def __len__(self):
-        return len(self.image_filenames)
+        return len(self.image_filenames_input)
 
 
 class MyDataset_test(data.Dataset):

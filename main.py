@@ -10,7 +10,7 @@ from dataset.data import get_training_set, get_test_set
 # ===========================================================
 parser = argparse.ArgumentParser(description='PyTorch Super resolution task')
 # hyper-parameters
-parser.add_argument('--batchSize', type=int, default=32, help='training batch size')
+parser.add_argument('--batchSize', type=int, default=128, help='training batch size')
 parser.add_argument('--testBatchSize', type=int, default=1, help='testing batch size')
 parser.add_argument('--nEpochs', type=int, default=100, help='number of epochs to train for')
 parser.add_argument('--lr', type=float, default=0.01, help='Learning Rate. Default=0.01')
