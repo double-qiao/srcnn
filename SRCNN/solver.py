@@ -121,7 +121,7 @@ class SRCNNTrainer(object):
                     # Img = Image.fromarray(img_arr, mode='RGB')
                     string = str((self.test_batchsize * batch_num) + i)
                     if batch_num == 0:
-                        im = self.save_image(img, "/home/s1825980/srcnn/SRCNN/predict_train_image/"+ string + '.jpg', nrow=8, padding=2,
+                        im = self.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/"+ string + '.jpg', nrow=8, padding=2,
                                              normalize=False, range=None, scale_each=False, pad_value=0)
                         print(im)
 
@@ -130,7 +130,7 @@ class SRCNNTrainer(object):
 
 
                     # img_PIL.save("/home/s1825980/srcnn/SRCNN/predict/" + string +'.jpg')
-                        torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict_train_image/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
+                        torchvision.utils.save_image(img, "/home/s1825980/srcnn/SRCNN/predict/" + string + '.jpg', nrow=8, padding=2, normalize=False, range=None,
                                                  scale_each=False, pad_value=0)
 
 
