@@ -45,7 +45,7 @@ def target_transform_train(crop_size):
 def get_training_set():
     # root_dir = get_data_set()
     # train_dir = join(root_dir, "train")
-    train_dir = "/home/s1825980/srcnn/"
+    train_dir = "./"
     # train_dir = "/home/s1825980/datasets/valid_div2k"
     # crop_size = 648
     crop_size = 256
@@ -60,7 +60,7 @@ def get_test_set():
     # root_dir = get_data_set()
     # test_dir = join(root_dir, "test")
     # test_dir = "/home/s1825980/datasets/valid_div2k"
-    test_dir = "/home/s1825980/datasets/valid_div2k"
+    test_dir = "./"
     upscale_factor = 4
     return MyDataset_test(test_dir,
                              input_transform=input_transform_test(),
