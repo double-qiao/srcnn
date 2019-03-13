@@ -53,9 +53,9 @@ class MyDataset_test(data.Dataset):
     def __init__(self, image_dir, input_transform=None, target_transform=None):
         super(MyDataset_test, self).__init__()
         self.image_filenames_target = [join(image_dir+"DIV2K_valid_HR", x)
-                                      for x in sort(listdir(image_dir+"/DIV2K_valid_HR")) if is_image_file(x)]
+                                      for x in sorted(listdir(image_dir+"/DIV2K_valid_HR")) if is_image_file(x)]
         self.image_filenames_input = [join(image_dir+"DIV2K_valid_LR_bicubic_X4/X4", x)
-                                       for x in sort(listdir(image_dir+"/DIV2K_valid_LR_bicubic_X4/X4")) if is_image_file(x)]
+                                       for x in sorted(listdir(image_dir+"/DIV2K_valid_LR_bicubic_X4/X4")) if is_image_file(x)]
 
 
         self.input_transform = input_transform
